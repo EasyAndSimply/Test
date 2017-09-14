@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         enterBTN = (Button) findViewById(R.id.enterBTN);
         registerTV = (TextView) findViewById(R.id.registerTV);
 
+        LoginChek();
 
       if(sp.contains(APP_PREFERENCES)) {
             Intent register = new Intent(MainActivity.this, workScreen.class);
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                LogitChek();
+                LoginChek();
             }
         });
 
@@ -55,17 +56,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-         void LogitChek(){
+         void LoginChek(){
              String user = nameMain.getText().toString();
              String pass = passMain.getText().toString();
              sp = getSharedPreferences(APP_PREFERENCES , Context.MODE_PRIVATE);
              String userDetails = sp.getString(user + pass + "data", "User name or Password is Incorrect.");
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString("display",userDetails);
-            editor.commit();
+             SharedPreferences.Editor editor = sp.edit();
+             editor.putString("display",userDetails);
+             editor.commit();
 
 
-        Intent workScreen = new Intent(MainActivity.this, workScreen.class);
+
+             Intent workScreen = new Intent(MainActivity.this, workScreen.class);
         startActivity(workScreen);
     }
     }
